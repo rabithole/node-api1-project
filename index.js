@@ -43,8 +43,8 @@ server.post('/api/users', (req, res) => {
 			res.status(200).json({user});
 		})
 		.catch(err => {
-			res.status(400).json({success: false, message: 'Please provide name and bio for the user.'})
-		})
+			res.status(400).json({success: false, message: 'Please provide name and bio for the user.'});
+		});
 })
 
 server.get('/api/users/:id', (req, res) => {
@@ -52,9 +52,18 @@ server.get('/api/users/:id', (req, res) => {
 
 	db.findById(id)
 		.then(userId => {
-			res.status(200).json({userId});
+			res.status(200).json({success: true, userId});
 		})
 		.catch(err => {
-			res.status(404).json({success: false, message: 'Not Found'})
-		})
+			res.status(404).json({success: false, message: "The user with the specified ID does not exist"});
+		});
+})
+
+server.delete('/api/users/:id', (req, res) => {
+	const { id } = req.params;
+
+	db.remove(id)
+		.then(user => {
+			res.status()
+		})	
 })
