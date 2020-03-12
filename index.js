@@ -19,6 +19,7 @@ server.listen(4000, () => {
 // All requests will go through the use method. 
 server.use(express.json());
 
+//////// GET ALL USERS //////////////////////
 server.get('/', (req, res) => {
 	res.send(req.params); // Printed in the browser
 })
@@ -35,6 +36,7 @@ server.get('/api/users', (req, res) => {
 		});
 })
 
+/////////////// CREATES A NEW USER 	/////////////////////////
 server.post('/api/users', (req, res) => {
 	const hubInfo = req.body;
 
@@ -47,6 +49,7 @@ server.post('/api/users', (req, res) => {
 		});
 })
 
+///////////////////	 GETS A SPECIFIC USER BY THE USERS ID   /////////////////
 server.get('/api/users/:id', (req, res) => {
 	const { id } = req.params;
 
@@ -66,6 +69,7 @@ server.get('/api/users/:id', (req, res) => {
 		});
 })
 
+//////////////    DELETES A USER BASED ON THE USERS ID   ////////////////
 server.delete('/api/users/:id', (req, res) => {
 	const { id } = req.params;
 
@@ -85,17 +89,18 @@ server.delete('/api/users/:id', (req, res) => {
     });
 })
 
+///////////////  	UPDATES A USER BASED ON THE USERS ID 	//////////
 server.put('/api/users/:id', (req, res) => {
 	const { name, bio } = req.body;
 
 	if (!name || !bio) {
 		res.status(400)
 	  		.json({ errorMessage: 'Please provide name and bio for the user.' });
-		} else {
+	} else {
 	db.update(req.params.id, req.body)
 		.then(user => {
 	if (user) {
-	  res.status(200).json(user);
+	  		res.status(200).json(user);
 		} else {
 	  	res.status(404)
 	    	.json({ message: 'The user with the specified ID does not exist.'});
