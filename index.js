@@ -9,8 +9,8 @@ const server = express(); // returns a server object.
 
 // TCP/IP goes in parameters of the function below. 
 // 4000 is the designated port
-server.listen(4000, () => {
-	console.log('listening on port 4000...');
+server.listen(4010, () => {
+	console.log('listening on port 4010...');
 })
 // Places in listen mode. 
 
@@ -21,7 +21,7 @@ server.use(express.json());
 
 //////// GET ALL USERS //////////////////////
 server.get('/', (req, res) => {
-	res.send(req.params); // Printed in the browser
+	res.send('Test on port 4010'); // Printed in the browser
 })
 
 server.get('/api/users', (req, res) => {
