@@ -20,8 +20,8 @@ server.listen(4010, () => {
 server.use(express.json());
 
 //////// GET ALL USERS //////////////////////
-server.get('/', (req, res) => {
-	res.send('Test on port 4010'); // Printed in the browser
+server.get('/testing', (req, res) => {
+	res.send('You found an open port at port 4010'); // Printed in the browser
 })
 
 server.get('/api/users', (req, res) => {
@@ -52,6 +52,7 @@ server.post('/api/users', (req, res) => {
 ///////////////////	 GETS A SPECIFIC USER BY THE USERS ID   /////////////////
 server.get('/api/users/:id', (req, res) => {
 	const { id } = req.params;
+	console.log('Line 55', id)
 
 	db.findById(id)
 		.then(userId => {
